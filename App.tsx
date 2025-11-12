@@ -9,6 +9,8 @@ import { BellIcon } from './components/icons/BellIcon';
 import { ChartIcon } from './components/icons/ChartIcon';
 import { UsersIcon } from './components/icons/UsersIcon';
 import { DemoModal } from './components/DemoModal';
+import { PildhoraImageLogo } from './components/icons/PildhoraImageLogo';
+import { PildhoraImageReal } from './components/icons/PildhoraImageReal';
 
 // A small component for feature highlights to keep the main component clean
 const Feature: React.FC<{ icon: React.ReactNode; title: string; children: React.ReactNode }> = ({ icon, title, children }) => (
@@ -99,11 +101,17 @@ const App: React.FC = () => {
                 </button>
               </div>
             </div>
-            <div className="flex justify-center items-center p-8 bg-gray-900 rounded-3xl aspect-square">
-               {/* Placeholder for product image */}
-               <div className="w-full h-full border-2 border-dashed border-gray-600 rounded-2xl flex items-center justify-center">
-                 <p className="text-gray-500">Imagen del producto Pildhora</p>
+            <div className="relative overflow-hidden bg-gray-900 rounded-3xl aspect-square">
+               <div className="absolute inset-x-0 top-1/2 transform -translate-y-1/2 flex items-center justify-center">
+                  <PildhoraImageReal className="w-96 h-96 object-cover" showText={false} />
                </div>
+               {/* Top crop frame - larger to crop more */}
+               <div className="absolute top-0 left-0 right-0 h-16 bg-gradient-to-b from-gray-900 to-transparent"></div>
+               {/* Bottom crop frame - larger to crop more */}
+               <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-gray-900 to-transparent"></div>
+               {/* Side crop for better focus */}
+               <div className="absolute left-0 top-0 bottom-0 w-8 bg-gradient-to-r from-gray-900 to-transparent"></div>
+               <div className="absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-gray-900 to-transparent"></div>
             </div>
           </div>
         </Section>
@@ -159,9 +167,7 @@ const App: React.FC = () => {
         <footer id="contacto" className="bg-gray-900 py-12">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-gray-500">
                 <a href="#inicio" className="flex items-center justify-center gap-2 mb-4">
-                     <svg className="w-8 h-8 text-cyan-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M12 6V4m0 16v-2M8 12a4 4 0 118 0 4 4 0 01-8 0z" />
-                    </svg>
+                    <PildhoraImageLogo className="w-8 h-8" />
                     <span className="text-xl font-bold text-white">Pildhora</span>
                 </a>
                 <p>Un proyecto de Rosario para toda Argentina.</p>
