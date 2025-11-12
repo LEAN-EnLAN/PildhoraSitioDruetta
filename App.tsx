@@ -12,6 +12,34 @@ import { DemoModal } from './components/DemoModal';
 import { PildhoraImageLogo } from './components/icons/PildhoraImageLogo';
 import { PildhoraImageReal } from './components/icons/PildhoraImageReal';
 
+// Tab component for interactive legal section
+const LegalTab: React.FC<{ 
+  activeTab: string; 
+  setActiveTab: (tab: string) => void; 
+  tabId: string; 
+  title: string;
+  icon: React.ReactNode;
+}> = ({ activeTab, setActiveTab, tabId, title, icon }) => (
+  <button
+    onClick={() => setActiveTab(tabId)}
+    className={`flex items-center gap-3 px-6 py-4 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 ${
+      activeTab === tabId
+        ? 'bg-cyan-600 text-white shadow-lg shadow-cyan-600/25'
+        : 'bg-gray-700 text-gray-300 hover:bg-gray-600 hover:text-white'
+    }`}
+  >
+    {icon}
+    <span>{title}</span>
+  </button>
+);
+
+// Animated content container
+const LegalContent: React.FC<{ isVisible: boolean; children: React.ReactNode }> = ({ isVisible, children }) => (
+  <div className={`transition-all duration-500 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+    {isVisible && children}
+  </div>
+);
+
 // A small component for feature highlights to keep the main component clean
 const Feature: React.FC<{ icon: React.ReactNode; title: string; children: React.ReactNode }> = ({ icon, title, children }) => (
   <div className="flex items-start text-left space-x-4">
@@ -51,6 +79,7 @@ const howItWorksSteps = [
 
 const App: React.FC = () => {
   const [isDemoModalOpen, setDemoModalOpen] = useState(false);
+  const [activeLegalTab, setActiveLegalTab] = useState('sanitario');
 
   return (
     <div className="bg-gray-900 text-gray-200 antialiased">
@@ -139,27 +168,293 @@ const App: React.FC = () => {
         {/* Screen 4: Marco Legal */}
         <Section id="leyes" className="bg-gray-800">
             <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-white mb-4">
-                Tecnología y Salud: Tu Derecho Protegido
+                📋 Tu Derecho Protegido: Explorá Nuestro Compromiso Legal
             </h2>
             <p className="max-w-3xl mx-auto text-lg text-gray-400 mb-12">
-                Pildhora opera en total conformidad con la legislación argentina, garantizando la seguridad y privacidad de tu información.
+                Descubrí cómo Pildhora protege tus derechos en cada interacción. Hacé clic en cada sección para conocer los detalles de nuestra conformidad legal.
             </p>
-            <div className="grid md:grid-cols-3 gap-8">
-                <InfoCard 
+
+            {/* Interactive Tab Navigation */}
+            <div className="flex flex-wrap justify-center gap-4 mb-12">
+                <LegalTab 
+                    activeTab={activeLegalTab} 
+                    setActiveTab={setActiveLegalTab} 
+                    tabId="sanitario" 
+                    title="Marco Sanitario"
                     icon={<HeartIcon />}
-                    title="Ley de Derechos del Paciente"
-                    description="Respetamos tu autonomía y confidencialidad en cada interacción, como lo establece la Ley 26.529."
                 />
-                <InfoCard 
+                <LegalTab 
+                    activeTab={activeLegalTab} 
+                    setActiveTab={setActiveLegalTab} 
+                    tabId="tecnologico" 
+                    title="Cumplimiento TIC"
                     icon={<ShieldIcon />}
-                    title="Protección de Datos Personales"
-                    description="Tus datos de salud son sensibles. Los protegemos bajo los más altos estándares de la Ley 25.326."
                 />
-                <InfoCard 
+                <LegalTab 
+                    activeTab={activeLegalTab} 
+                    setActiveTab={setActiveLegalTab} 
+                    tabId="consumidor" 
+                    title="Tus Derechos"
+                    icon={<UsersIcon />}
+                />
+                <LegalTab 
+                    activeTab={activeLegalTab} 
+                    setActiveTab={setActiveLegalTab} 
+                    tabId="seguridad" 
+                    title="Certificaciones"
                     icon={<LawIcon />}
-                    title="Consentimiento Informado"
-                    description="El uso de la app y el compartir datos con tu familia o médicos siempre requerirá tu autorización explícita."
                 />
+            </div>
+
+            {/* Tab Content with Animations */}
+            <div className="relative min-h-[600px]">
+                {/* Marco Regulatorio Sanitario */}
+                <LegalContent isVisible={activeLegalTab === 'sanitario'}>
+                    <div className="space-y-8">
+                        <div className="text-center mb-8">
+                            <h3 className="text-2xl font-bold text-white mb-4">🏥 Marco Regulatorio Sanitario</h3>
+                            <p className="text-gray-400 max-w-2xl mx-auto">
+                                Tu salud y privacidad están protegidas por las leyes argentinas más estrictas. Conocé tus derechos como paciente.
+                            </p>
+                        </div>
+                        <div className="grid md:grid-cols-3 gap-6">
+                            <div className="bg-gray-900 rounded-xl p-6 border border-gray-700 hover:border-cyan-500 transition-all duration-300 transform hover:scale-105">
+                                <div className="text-center mb-4">
+                                    <HeartIcon className="w-12 h-12 text-cyan-400 mx-auto mb-3" />
+                                    <h4 className="text-lg font-bold text-white">Ley 26.529</h4>
+                                </div>
+                                <p className="text-gray-300 text-sm">
+                                    Tu autonomía para tomar decisiones sobre tu salud está garantizada. Accedé a información clara sobre tu tratamiento con absoluta confidencialidad.
+                                </p>
+                                <button className="mt-4 text-cyan-400 hover:text-cyan-300 text-sm font-semibold">
+                                    Ver más detalles →
+                                </button>
+                            </div>
+                            <div className="bg-gray-900 rounded-xl p-6 border border-gray-700 hover:border-cyan-500 transition-all duration-300 transform hover:scale-105">
+                                <div className="text-center mb-4">
+                                    <ShieldIcon className="w-12 h-12 text-cyan-400 mx-auto mb-3" />
+                                    <h4 className="text-lg font-bold text-white">Ley 25.326</h4>
+                                </div>
+                                <p className="text-gray-300 text-sm">
+                                    Tus datos de salud son información sensible. Implementamos seguridad de nivel bancario con cifrado end-to-end.
+                                </p>
+                                <button className="mt-4 text-cyan-400 hover:text-cyan-300 text-sm font-semibold">
+                                    Ver más detalles →
+                                </button>
+                            </div>
+                            <div className="bg-gray-900 rounded-xl p-6 border border-gray-700 hover:border-cyan-500 transition-all duration-300 transform hover:scale-105">
+                                <div className="text-center mb-4">
+                                    <LawIcon className="w-12 h-12 text-cyan-400 mx-auto mb-3" />
+                                    <h4 className="text-lg font-bold text-white">Consentimiento</h4>
+                                </div>
+                                <p className="text-gray-300 text-sm">
+                                    Todo tratamiento requiere tu autorización expresa. Podés revocar tu consentimiento en cualquier momento.
+                                </p>
+                                <button className="mt-4 text-cyan-400 hover:text-cyan-300 text-sm font-semibold">
+                                    Ver más detalles →
+                                </button>
+                            </div>
+                        </div>
+                        <div className="bg-cyan-900/20 rounded-xl p-6 border border-cyan-700">
+                            <h4 className="text-cyan-400 font-bold mb-3">💡 ¿Sabías que...?</h4>
+                            <p className="text-gray-300 text-sm">
+                                La Ley de Derechos del Paciente te garantiza acceder a tu información médica completa en cualquier momento. 
+                                Con Pildhora, podés descargar un reporte detallado de tu adherencia al tratamiento para compartir con tu médico.
+                            </p>
+                        </div>
+                    </div>
+                </LegalContent>
+
+                {/* Cumplimiento Tecnológico */}
+                <LegalContent isVisible={activeLegalTab === 'tecnologico'}>
+                    <div className="space-y-8">
+                        <div className="text-center mb-8">
+                            <h3 className="text-2xl font-bold text-white mb-4">🔒 Cumplimiento Tecnológico</h3>
+                            <p className="text-gray-400 max-w-2xl mx-auto">
+                                Nuestra tecnología cumple con las normativas más exigentes para garantizar tu seguridad digital.
+                            </p>
+                        </div>
+                        <div className="grid md:grid-cols-2 gap-8">
+                            <div className="bg-gray-900 rounded-xl p-6 border border-gray-700">
+                                <ShieldIcon className="w-10 h-10 text-cyan-400 mb-4" />
+                                <h4 className="text-xl font-bold text-white mb-3">ANMAT</h4>
+                                <p className="text-gray-300 mb-4">
+                                    Nuestro hardware cumple con las normativas de la Administración Nacional de Medicamentos 
+                                    para dispositivos de soporte terapéutico.
+                                </p>
+                                <div className="space-y-2">
+                                    <div className="flex items-center gap-2 text-sm text-gray-400">
+                                        <span className="w-2 h-2 bg-green-500 rounded-full"></span>
+                                        Certificación de calidad médica
+                                    </div>
+                                    <div className="flex items-center gap-2 text-sm text-gray-400">
+                                        <span className="w-2 h-2 bg-green-500 rounded-full"></span>
+                                        Aprobación de seguridad eléctrica
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="bg-gray-900 rounded-xl p-6 border border-gray-700">
+                                <LawIcon className="w-10 h-10 text-cyan-400 mb-4" />
+                                <h4 className="text-xl font-bold text-white mb-3">Ley 27.078 de TIC</h4>
+                                <p className="text-gray-300 mb-4">
+                                    Cumplimos con la Ley de Tecnologías de la Información, garantizando 
+                                    acceso universal y protección del usuario.
+                                </p>
+                                <div className="space-y-2">
+                                    <div className="flex items-center gap-2 text-sm text-gray-400">
+                                        <span className="w-2 h-2 bg-green-500 rounded-full"></span>
+                                        Neutralidad de red
+                                    </div>
+                                    <div className="flex items-center gap-2 text-sm text-gray-400">
+                                        <span className="w-2 h-2 bg-green-500 rounded-full"></span>
+                                        Protección de datos personales
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="bg-gradient-to-r from-cyan-900/20 to-blue-900/20 rounded-xl p-6 border border-cyan-700">
+                            <h4 className="text-cyan-400 font-bold mb-3">🔐 Seguridad Garantizada</h4>
+                            <p className="text-gray-300 text-sm mb-3">
+                                Tu información médica está protegida con los mismos estándares que utilizan los bancos. 
+                                Utilizamos cifrado AES-256 y almacenamiento en servidores certificados.
+                            </p>
+                            <div className="flex gap-4 text-xs text-gray-400">
+                                <span className="bg-gray-800 px-3 py-1 rounded">AES-256</span>
+                                <span className="bg-gray-800 px-3 py-1 rounded">SSL/TLS</span>
+                                <span className="bg-gray-800 px-3 py-1 rounded">ISO 27001</span>
+                            </div>
+                        </div>
+                    </div>
+                </LegalContent>
+
+                {/* Derechos del Consumidor */}
+                <LegalContent isVisible={activeLegalTab === 'consumidor'}>
+                    <div className="space-y-8">
+                        <div className="text-center mb-8">
+                            <h3 className="text-2xl font-bold text-white mb-4">⚖️ Tus Derechos como Consumidor</h3>
+                            <p className="text-gray-400 max-w-2xl mx-auto">
+                                Estás protegido por las leyes de defensa del consumidor. Conocé tus garantías y derechos.
+                            </p>
+                        </div>
+                        <div className="grid md:grid-cols-3 gap-6">
+                            <div className="bg-gray-900 rounded-xl p-6 border border-gray-700 hover:border-green-500 transition-all duration-300">
+                                <HeartIcon className="w-10 h-10 text-green-400 mb-4" />
+                                <h4 className="text-lg font-bold text-white mb-3">Garantía Total</h4>
+                                <ul className="space-y-2 text-sm text-gray-300">
+                                    <li>• 12 meses de garantía por defectos</li>
+                                    <li>• 10 días de retracto sin costo</li>
+                                    <li>• Servicio post-venta garantizado</li>
+                                    <li>• Repuestos originales asegurados</li>
+                                </ul>
+                            </div>
+                            <div className="bg-gray-900 rounded-xl p-6 border border-gray-700 hover:border-green-500 transition-all duration-300">
+                                <UsersIcon className="w-10 h-10 text-green-400 mb-4" />
+                                <h4 className="text-lg font-bold text-white mb-3">Soporte Continuo</h4>
+                                <ul className="space-y-2 text-sm text-gray-300">
+                                    <li>• App actualizada por 3 años</li>
+                                    <li>• Atención al cliente 24/7</li>
+                                    <li>• Actualizaciones de software gratis</li>
+                                    <li>• Capacitación incluida</li>
+                                </ul>
+                            </div>
+                            <div className="bg-gray-900 rounded-xl p-6 border border-gray-700 hover:border-green-500 transition-all duration-300">
+                                <ChartIcon className="w-10 h-10 text-green-400 mb-4" />
+                                <h4 className="text-lg font-bold text-white mb-3">Transparencia</h4>
+                                <ul className="space-y-2 text-sm text-gray-300">
+                                    <li>• Precios sin suscripciones ocultas</li>
+                                    <li>• Facturación clara y detallada</li>
+                                    <li>• Términos y condiciones visibles</li>
+                                    <li>• Política de privacidad completa</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div className="bg-green-900/20 rounded-xl p-6 border border-green-700">
+                            <h4 className="text-green-400 font-bold mb-3">🛡️ Protección Completa</h4>
+                            <p className="text-gray-300 text-sm">
+                                Como consumidor argentino, tenés derecho a información veraz, garantía de funcionamiento, 
+                                y servicio post-venta. No hay letra chica ni cláusulas abusivas en nuestros contratos.
+                            </p>
+                        </div>
+                    </div>
+                </LegalContent>
+
+                {/* Certificaciones y Seguridad */}
+                <LegalContent isVisible={activeLegalTab === 'seguridad'}>
+                    <div className="space-y-8">
+                        <div className="text-center mb-8">
+                            <h3 className="text-2xl font-bold text-white mb-4">🏆 Certificaciones y Seguridad</h3>
+                            <p className="text-gray-400 max-w-2xl mx-auto">
+                                Nuestros estándares de calidad y seguridad están certificados por organismos internacionales.
+                            </p>
+                        </div>
+                        <div className="grid md:grid-cols-2 gap-8 mb-8">
+                            <div className="bg-gray-900 rounded-xl p-6 border border-gray-700">
+                                <h4 className="text-cyan-400 font-bold mb-4">Certificaciones de Seguridad</h4>
+                                <div className="space-y-3">
+                                    <div className="flex items-center gap-3">
+                                        <div className="w-8 h-8 bg-cyan-600 rounded-full flex items-center justify-center text-white font-bold text-sm">✓</div>
+                                        <span className="text-gray-300 text-sm">ISO 27001 - Gestión de seguridad de la información</span>
+                                    </div>
+                                    <div className="flex items-center gap-3">
+                                        <div className="w-8 h-8 bg-cyan-600 rounded-full flex items-center justify-center text-white font-bold text-sm">✓</div>
+                                        <span className="text-gray-300 text-sm">Normas IRAM para dispositivos electrónicos</span>
+                                    </div>
+                                    <div className="flex items-center gap-3">
+                                        <div className="w-8 h-8 bg-cyan-600 rounded-full flex items-center justify-center text-white font-bold text-sm">✓</div>
+                                        <span className="text-gray-300 text-sm">Compatibilidad electromagnética (CEM)</span>
+                                    </div>
+                                    <div className="flex items-center gap-3">
+                                        <div className="w-8 h-8 bg-cyan-600 rounded-full flex items-center justify-center text-white font-bold text-sm">✓</div>
+                                        <span className="text-gray-300 text-sm">Seguridad eléctrica IRAM-IEC 60950</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="bg-gray-900 rounded-xl p-6 border border-gray-700">
+                                <h4 className="text-cyan-400 font-bold mb-4">Auditorías y Compliance</h4>
+                                <div className="space-y-3">
+                                    <div className="flex items-center gap-3">
+                                        <div className="w-8 h-8 bg-green-600 rounded-full flex items-center justify-center text-white font-bold text-sm">✓</div>
+                                        <span className="text-gray-300 text-sm">Auditorías anuales por terceros independientes</span>
+                                    </div>
+                                    <div className="flex items-center gap-3">
+                                        <div className="w-8 h-8 bg-green-600 rounded-full flex items-center justify-center text-white font-bold text-sm">✓</div>
+                                        <span className="text-gray-300 text-sm">Evaluaciones de impacto en protección de datos</span>
+                                    </div>
+                                    <div className="flex items-center gap-3">
+                                        <div className="w-8 h-8 bg-green-600 rounded-full flex items-center justify-center text-white font-bold text-sm">✓</div>
+                                        <span className="text-gray-300 text-sm">Estándares de calidad de software médico</span>
+                                    </div>
+                                    <div className="flex items-center gap-3">
+                                        <div className="w-8 h-8 bg-green-600 rounded-full flex items-center justify-center text-white font-bold text-sm">✓</div>
+                                        <span className="text-gray-300 text-sm">Registro ENACOM - Ente Nacional de Comunicaciones</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="text-center">
+                            <div className="inline-flex items-center gap-2 bg-cyan-900/20 px-4 py-2 rounded-lg border border-cyan-700">
+                                <ShieldIcon className="w-5 h-5 text-cyan-400" />
+                                <span className="text-cyan-400 text-sm font-semibold">Actualizado: Noviembre 2023 - Ley 27.699 de Protección de Datos</span>
+                            </div>
+                        </div>
+                    </div>
+                </LegalContent>
+            </div>
+            
+            {/* Contact Section */}
+            <div className="mt-16 text-center">
+                <h3 className="text-xl font-bold text-white mb-4">¿Tenés dudas sobre tu privacidad o derechos?</h3>
+                <p className="text-gray-400 mb-6">
+                    Estamos comprometidos con la transparencia total. Contactanos para consultas sobre aspectos legales.
+                </p>
+                <div className="flex flex-col md:flex-row gap-4 justify-center items-center">
+                    <a href="mailto:legal@pildhora.com" className="bg-gray-700 hover:bg-gray-600 text-white px-6 py-3 rounded-lg transition-all duration-300 transform hover:scale-105">
+                        📧 Contactar al Equipo Legal
+                    </a>
+                    <a href="#contacto" className="bg-cyan-600 hover:bg-cyan-700 text-white px-6 py-3 rounded-lg transition-all duration-300 transform hover:scale-105">
+                        💬 Soporte al Cliente
+                    </a>
+                </div>
             </div>
         </Section>
 
