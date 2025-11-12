@@ -200,6 +200,13 @@ const App: React.FC = () => {
                 <LegalTab 
                     activeTab={activeLegalTab} 
                     setActiveTab={setActiveLegalTab} 
+                    tabId="derecho-salud" 
+                    title="Derecho a la Salud"
+                    icon={<HeartIcon />}
+                />
+                <LegalTab 
+                    activeTab={activeLegalTab} 
+                    setActiveTab={setActiveLegalTab} 
                     tabId="seguridad" 
                     title="Certificaciones"
                     icon={<LawIcon />}
@@ -374,6 +381,270 @@ const App: React.FC = () => {
                                 Como consumidor argentino, tenés derecho a información veraz, garantía de funcionamiento, 
                                 y servicio post-venta. No hay letra chica ni cláusulas abusivas en nuestros contratos.
                             </p>
+                        </div>
+                    </div>
+                </LegalContent>
+
+                {/* Derecho a la Salud - Comprehensive Section */}
+                <LegalContent isVisible={activeLegalTab === 'derecho-salud'}>
+                    <div className="space-y-8">
+                        <div className="text-center mb-12">
+                            <h3 className="text-3xl font-bold text-white mb-6">🏥 El Derecho a la Salud y Pildhora</h3>
+                            <p className="text-gray-400 max-w-4xl mx-auto text-lg leading-relaxed">
+                                El derecho a la salud es un derecho humano fundamental que garantiza el acceso a servicios médicos, 
+                                medicamentos esenciales y tecnologías que promuevan el bienestar. Pildhora nace como una herramienta 
+                                que materializa este derecho, convirtiendo el acceso a la medicación adecuada en una realidad tangible 
+                                para cada persona.
+                            </p>
+                        </div>
+
+                        {/* Definición del Derecho a la Salud */}
+                        <div className="bg-gradient-to-r from-blue-900/30 to-cyan-900/30 rounded-2xl p-8 border border-blue-700">
+                            <h4 className="text-2xl font-bold text-blue-400 mb-6 flex items-center gap-3">
+                                <span className="text-3xl">⚖️</span>
+                                ¿Qué es el Derecho a la Salud?
+                            </h4>
+                            <div className="grid md:grid-cols-2 gap-8">
+                                <div className="space-y-4">
+                                    <p className="text-gray-300 leading-relaxed">
+                                        El derecho a la salud está consagrado en el artículo 12 del Pacto Internacional de Derechos 
+                                        Económicos, Sociales y Culturales (PIDESC) y en la Constitución Nacional Argentina. 
+                                        Este derecho abarca:
+                                    </p>
+                                    <ul className="space-y-3 text-gray-300">
+                                        <li className="flex items-start gap-3">
+                                            <span className="text-blue-400 mt-1">•</span>
+                                            <span>Acceso oportuno a servicios de salud sin discriminación</span>
+                                        </li>
+                                        <li className="flex items-start gap-3">
+                                            <span className="text-blue-400 mt-1">•</span>
+                                            <span>Disponibilidad de medicamentos esenciales y tecnologías médicas</span>
+                                        </li>
+                                        <li className="flex items-start gap-3">
+                                            <span className="text-blue-400 mt-1">•</span>
+                                            <span>Acceso a información médica clara y comprensible</span>
+                                        </li>
+                                        <li className="flex items-start gap-3">
+                                            <span className="text-blue-400 mt-1">•</span>
+                                            <span>Participación en decisiones sobre el propio tratamiento</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div className="bg-gray-900 rounded-xl p-6 border border-gray-700">
+                                    <h5 className="text-lg font-semibold text-cyan-400 mb-4">Marco Legal Argentino</h5>
+                                    <div className="space-y-3 text-sm text-gray-300">
+                                        <div className="flex items-center gap-2">
+                                            <span className="w-2 h-2 bg-cyan-400 rounded-full"></span>
+                                            <span>Art. 42 Constitución: Protección al consumidor de salud</span>
+                                        </div>
+                                        <div className="flex items-center gap-2">
+                                            <span className="w-2 h-2 bg-cyan-400 rounded-full"></span>
+                                            <span>Ley 26.529: Derechos de los pacientes</span>
+                                        </div>
+                                        <div className="flex items-center gap-2">
+                                            <span className="w-2 h-2 bg-cyan-400 rounded-full"></span>
+                                            <span>Ley 24.754: Medicamentos esenciales</span>
+                                        </div>
+                                        <div className="flex items-center gap-2">
+                                            <span className="w-2 h-2 bg-cyan-400 rounded-full"></span>
+                                            <span>Art. 75 inc. 22: Tratados internacionales</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Pildhora como Herramienta de Derechos */}
+                        <div className="bg-gradient-to-r from-green-900/30 to-emerald-900/30 rounded-2xl p-8 border border-green-700">
+                            <h4 className="text-2xl font-bold text-green-400 mb-6 flex items-center gap-3">
+                                <span className="text-3xl">💊</span>
+                                Pildhora: Materializando el Derecho a la Salud
+                            </h4>
+                            <p className="text-gray-300 mb-6 leading-relaxed">
+                                Pildhora no es simplemente un dispositivo tecnológico; es una herramienta que transforma el derecho 
+                                a la salud en una experiencia cotidiana accesible, digna y efectiva. Cada función de nuestro 
+                                pastillero inteligente está diseñada para garantizar que tu derecho a la salud se cumpla plenamente.
+                            </p>
+                            
+                            <div className="grid md:grid-cols-2 gap-8">
+                                <div className="space-y-6">
+                                    <div className="bg-gray-900 rounded-xl p-6 border border-gray-700">
+                                        <div className="flex items-center gap-3 mb-3">
+                                            <span className="text-2xl">🎯</span>
+                                            <h5 className="text-lg font-semibold text-white">Acceso Efectivo</h5>
+                                        </div>
+                                        <p className="text-gray-300 text-sm leading-relaxed">
+                                            El derecho a la salud incluye el acceso efectivo a medicamentos. Pildhora elimina 
+                                            las barreras de adherencia mediante recordatorios inteligentes, asegurando que 
+                                            recibas tu medicación en el momento preciso, sin olvidos ni retrasos.
+                                        </p>
+                                    </div>
+                                    
+                                    <div className="bg-gray-900 rounded-xl p-6 border border-gray-700">
+                                        <div className="flex items-center gap-3 mb-3">
+                                            <span className="text-2xl">📊</span>
+                                            <h5 className="text-lg font-semibold text-white">Información y Transparencia</h5>
+                                        </div>
+                                        <p className="text-gray-300 text-sm leading-relaxed">
+                                            Tu derecho a la información médica se respalda con reportes detallados de adherencia, 
+                                            historial de tomas y alertas de seguridad. Conocé exactamente cómo está funcionando 
+                                            tu tratamiento con datos claros y accesibles.
+                                        </p>
+                                    </div>
+                                </div>
+                                
+                                <div className="space-y-6">
+                                    <div className="bg-gray-900 rounded-xl p-6 border border-gray-700">
+                                        <div className="flex items-center gap-3 mb-3">
+                                            <span className="text-2xl">🤝</span>
+                                            <h5 className="text-lg font-semibold text-white">Autonomía y Participación</h5>
+                                        </div>
+                                        <p className="text-gray-300 text-sm leading-relaxed">
+                                            El derecho a participar en decisiones sobre tu salud se fortalece con información 
+                                            precisa sobre tu adherencia. Podés compartir datos con tu médico para tomar 
+                                            decisiones informadas sobre tu tratamiento.
+                                        </p>
+                                    </div>
+                                    
+                                    <div className="bg-gray-900 rounded-xl p-6 border border-gray-700">
+                                        <div className="flex items-center gap-3 mb-3">
+                                            <span className="text-2xl">🛡️</span>
+                                            <h5 className="text-lg font-semibold text-white">Protección y Dignidad</h5>
+                                        </div>
+                                        <p className="text-gray-300 text-sm leading-relaxed">
+                                            Tu dignidad como paciente se respeta mediante un sistema discreto, confiable y 
+                                            diseñado para integrarse respetuosamente en tu vida diaria, sin estigmatización 
+                                            ni complicaciones innecesarias.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Relación Dinámica */}
+                        <div className="bg-gradient-to-r from-purple-900/30 to-pink-900/30 rounded-2xl p-8 border border-purple-700">
+                            <h4 className="text-2xl font-bold text-purple-400 mb-6 flex items-center gap-3">
+                                <span className="text-3xl">⚡</span>
+                                La Relación Dinámica: Derecho a la Salud + Tecnología Inteligente
+                            </h4>
+                            <div className="grid md:grid-cols-3 gap-6 mb-8">
+                                <div className="text-center">
+                                    <div className="bg-purple-900/50 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-4">
+                                        <span className="text-3xl">📱</span>
+                                    </div>
+                                    <h5 className="text-lg font-semibold text-white mb-2">Tecnología Accesible</h5>
+                                    <p className="text-gray-300 text-sm">
+                                        Diseñado para ser intuitivo y accesible para personas de todas las edades y capacidades
+                                    </p>
+                                </div>
+                                <div className="text-center">
+                                    <div className="bg-purple-900/50 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-4">
+                                        <span className="text-3xl">⏰</span>
+                                    </div>
+                                    <h5 className="text-lg font-semibold text-white mb-2">Oportunidad Garantizada</h5>
+                                    <p className="text-gray-300 text-sm">
+                                        Recordatorios precisos que garantizan que ninguna dosis importante se pierda por falta de recordatorio
+                                    </p>
+                                </div>
+                                <div className="text-center">
+                                    <div className="bg-purple-900/50 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-4">
+                                        <span className="text-3xl">🔗</span>
+                                    </div>
+                                    <h5 className="text-lg font-semibold text-white mb-2">Conexión Familiar</h5>
+                                    <p className="text-gray-300 text-sm">
+                                        Incluye a tu familia en el cuidado de tu salud, fortaleciendo tu red de apoyo
+                                    </p>
+                                </div>
+                            </div>
+                            <div className="bg-gray-900 rounded-xl p-6 border border-gray-700">
+                                <p className="text-gray-300 leading-relaxed text-center">
+                                    <strong className="text-purple-400">La sinergia perfecta:</strong> El derecho a la salud 
+                                    establece el <em>por qué</em> y el <em>qué</em> debemos garantizar, mientras que Pildhora 
+                                    proporciona el <em>cómo</em>. Juntos, transforman un derecho abstracto en una realidad 
+                                    tangible que mejora tu calidad de vida día tras día.
+                                </p>
+                            </div>
+                        </div>
+
+                        {/* Impacto Social y Personal */}
+                        <div className="bg-gradient-to-r from-orange-900/30 to-red-900/30 rounded-2xl p-8 border border-orange-700">
+                            <h4 className="text-2xl font-bold text-orange-400 mb-6 flex items-center gap-3">
+                                <span className="text-3xl">📈</span>
+                                Impacto en tu Vida: Más que un Dispositivo, un Compañero de Derechos
+                            </h4>
+                            <div className="space-y-6">
+                                <div className="bg-gray-900 rounded-xl p-6 border border-gray-700">
+                                    <h5 className="text-lg font-semibold text-orange-400 mb-4">Reducción de Barreras</h5>
+                                    <div className="grid md:grid-cols-2 gap-4 text-sm text-gray-300">
+                                        <div>
+                                            <strong className="text-white">Antes:</strong> Olvidos frecuentes, confusión con horarios, 
+                                            dificultad para recordar múltiples medicamentos, ansiedad por la responsabilidad.
+                                        </div>
+                                        <div>
+                                            <strong className="text-white">Con Pildhora:</strong> Recordatorios precisos, organización 
+                                            automática, tranquilidad mental, confianza en el tratamiento.
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div className="bg-gray-900 rounded-xl p-6 border border-gray-700">
+                                    <h5 className="text-lg font-semibold text-orange-400 mb-4">Empoderamiento Personal</h5>
+                                    <p className="text-gray-300 leading-relaxed mb-4">
+                                        Al garantizar que tu tratamiento se cumpla correctamente, Pildhora te empodera para:
+                                    </p>
+                                    <div className="grid md:grid-cols-2 gap-4">
+                                        <ul className="space-y-2 text-sm text-gray-300">
+                                            <li className="flex items-center gap-2">
+                                                <span className="text-green-400">✓</span>
+                                                Tomar control activo de tu salud
+                                            </li>
+                                            <li className="flex items-center gap-2">
+                                                <span className="text-green-400">✓</span>
+                                                Reducir estrés y ansiedad relacionada con la medicación
+                                            </li>
+                                            <li className="flex items-center gap-2">
+                                                <span className="text-green-400">✓</span>
+                                                Mejorar tu calidad de vida diaria
+                                            </li>
+                                        </ul>
+                                        <ul className="space-y-2 text-sm text-gray-300">
+                                            <li className="flex items-center gap-2">
+                                                <span className="text-green-400">✓</span>
+                                                Participar activamente en tu tratamiento
+                                            </li>
+                                            <li className="flex items-center gap-2">
+                                                <span className="text-green-400">✓</span>
+                                                Mantener independencia y autonomía
+                                            </li>
+                                            <li className="flex items-center gap-2">
+                                                <span className="text-green-400">✓</span>
+                                                Construir hábitos saludables sostenibles
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Conclusión Inspiradora */}
+                        <div className="bg-gradient-to-r from-teal-900/30 to-cyan-900/30 rounded-2xl p-8 border border-teal-700 text-center">
+                            <h4 className="text-2xl font-bold text-teal-400 mb-6 flex items-center justify-center gap-3">
+                                <span className="text-3xl">🌟</span>
+                                Tu Derecho, Tu Herramienta, Tu Vida Mejor
+                            </h4>
+                            <p className="text-gray-300 text-lg leading-relaxed max-w-4xl mx-auto mb-6">
+                                Pildhora representa más que tecnología: es la materialización de tu derecho fundamental a la salud. 
+                                Cada recordatorio, cada notificación, cada función está diseñada para garantizar que puedas 
+                                ejercer plenamente este derecho sin complicaciones, sin olvidos, sin barreras.
+                            </p>
+                            <div className="bg-teal-900/30 rounded-xl p-6 border border-teal-600">
+                                <p className="text-teal-300 font-semibold text-center">
+                                    "El derecho a la salud no es solo el acceso a servicios médicos, sino el acceso 
+                                    efectivo a una vida saludable. Con Pildhora, ese acceso está en tus manos, 
+                                    funcionando silenciosamente para garantizar que cada día puedas vivir 
+                                    plenamente, con salud, dignidad y tranquilidad."
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </LegalContent>
